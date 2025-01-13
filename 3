@@ -1,0 +1,24 @@
+def twoStacks(maxSum, a, b):
+    i, j = 0, 0
+    total = 0
+    count = 0
+
+    
+    while i < len(a) and total + a[i] <= maxSum:
+        total += a[i]
+        i += 1
+    count = i
+
+    
+    while j < len(b):
+        total += b[j]
+        j += 1
+
+        while total > maxSum and i > 0:
+            i -= 1
+            total -= a[i]
+
+        if total <= maxSum:
+            count = max(count, i + j)
+
+    return count
