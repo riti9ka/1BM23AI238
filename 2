@@ -1,0 +1,32 @@
+class MyQueue:
+    def __init__(self):
+        self.stack1 = []
+        self.stack2 = []
+
+    def enqueue(self, value):
+        self.stack1.append(value)
+
+    def dequeue(self):
+        if not self.stack2:
+            while self.stack1:
+                self.stack2.append(self.stack1.pop())
+        return self.stack2.pop()
+
+    def peek(self):
+        if not self.stack2:
+            while self.stack1:
+                self.stack2.append(self.stack1.pop())
+        return self.stack2[-1]
+
+
+if __name__ == "__main__":
+    q = MyQueue()
+    t = int(input())
+    for _ in range(t):
+        values = list(map(int, input().split()))
+        if values[0] == 1:
+            q.enqueue(values[1])
+        elif values[0] == 2:
+            q.dequeue()
+        else:
+            print(q.peek()
